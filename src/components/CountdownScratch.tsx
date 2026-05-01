@@ -159,15 +159,27 @@ export default function CountdownScratch() {
     }
   }, [revealed])
 
-  const handleMouseDown = () => { isDrawing.current = true }
+  const handleMouseDown = (e: React.MouseEvent) => { 
+    isDrawing.current = true 
+    scratch(e.clientX, e.clientY)
+  }
   const handleMouseUp = () => { isDrawing.current = false }
   const handleMouseMove = (e: React.MouseEvent) => {
     if (isDrawing.current) scratch(e.clientX, e.clientY)
   }
-  const handleTouchMove = (e: React.TouchEvent) => {
-    e.preventDefault()
+  const handleTouchStart = (e: React.TouchEvent) => {
+    isDrawing.current = true
     const touch = e.touches[0]
     scratch(touch.clientX, touch.clientY)
+  }
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (e.cancelable) {
+      e.preventDefault()
+    }
+    const touch = e.touches[0]
+    if (isDrawing.current) {
+      scratch(touch.clientX, touch.clientY)
+    }
   }
 
   return (
@@ -210,11 +222,12 @@ export default function CountdownScratch() {
           <canvas
             ref={canvasRef}
             className="scratch-canvas"
+            style={{ touchAction: 'none' }}
             onMouseDown={handleMouseDown}
             onMouseUp={handleMouseUp}
             onMouseLeave={handleMouseUp}
             onMouseMove={handleMouseMove}
-            onTouchStart={() => { isDrawing.current = true }}
+            onTouchStart={handleTouchStart}
             onTouchEnd={() => { isDrawing.current = false }}
             onTouchMove={handleTouchMove}
           />

@@ -10,7 +10,7 @@ export default function EnvelopeScreen({ onOpen, opened }: EnvelopeScreenProps) 
   const videoRef = useRef<HTMLVideoElement>(null)
 
   const handlePlay = () => {
-    if (videoRef.current) {
+    if (videoRef.current && !isPlaying) {
       videoRef.current.play().then(() => {
         setIsPlaying(true)
       }).catch((e) => {
@@ -37,8 +37,11 @@ export default function EnvelopeScreen({ onOpen, opened }: EnvelopeScreenProps) 
         onEnded={handleVideoEnd}
       />
 
-
-
+      <div className={`tap-to-open-overlay ${isPlaying ? 'fading-out' : ''}`}>
+        <div className="arabic-styled-text gold-shimmer">
+          Tap to Open
+        </div>
+      </div>
     </div>
   )
 }
