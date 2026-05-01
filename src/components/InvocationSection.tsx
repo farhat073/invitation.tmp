@@ -4,6 +4,9 @@ export default function InvocationSection() {
   return (
     <div className="section-card invocation-section" id="invocation">
       <CornerOrnaments />
+      <div className="invited-label gold-shimmer" style={{ fontFamily: 'var(--font-heading)', fontSize: '14px', letterSpacing: '8px', textTransform: 'uppercase', marginBottom: '30px' }}>
+        You are Invited
+      </div>
       {/* Arabic Calligraphy Hidden - Replaced with minimal ornament */}
       <div className="monogram-frame" style={{ width: '80px', height: '80px', margin: '0 auto 20px' }}>
         <div className="monogram-border" style={{ animationDuration: '40s' }}></div>

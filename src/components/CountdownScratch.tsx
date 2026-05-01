@@ -28,6 +28,7 @@ export default function CountdownScratch() {
   const [timeLeft, setTimeLeft] = useState<TimeLeft>(getTimeLeft())
   const isDrawing = useRef(false)
   const scratchPercentage = useRef(0)
+  const scratchCount = useRef(0)
 
   // Live countdown
   useEffect(() => {
@@ -145,17 +146,22 @@ export default function CountdownScratch() {
 
     ctx.globalCompositeOperation = 'source-over'
 
-    // Calculate scratch percentage
-    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
-    let transparent = 0
-    for (let i = 3; i < imageData.data.length; i += 4) {
-      if (imageData.data[i] === 0) transparent++
-    }
-    scratchPercentage.current = (transparent / (imageData.data.length / 4)) * 100
+    // Calculate scratch percentage (optimized for mobile)
+    scratchCount.current += 1
+    if (scratchCount.current % 10 === 0) {
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
+      let transparent = 0
+      const stride = 16 // check every 4th pixel to save CPU
+      for (let i = 3; i < imageData.data.length; i += stride) {
+        if (imageData.data[i] < 128) transparent++
+      }
+      const totalChecked = Math.floor(imageData.data.length / stride)
+      scratchPercentage.current = (transparent / totalChecked) * 100
 
-    // Auto-reveal at 40%
-    if (scratchPercentage.current > 40 && !revealed) {
-      setRevealed(true)
+      // Auto-reveal at 40%
+      if (scratchPercentage.current > 40 && !revealed) {
+        setRevealed(true)
+      }
     }
   }, [revealed])
 
@@ -184,7 +190,7 @@ export default function CountdownScratch() {
 
   return (
     <div className="countdown-scratch-wrapper" id="countdown">
-      <div className="scratch-label gold-shimmer">✦ The Royal Countdown ✦</div>
+      <div className="scratch-label gold-shimmer">✦ Ceremony Countdown ✦</div>
 
       <div
         className={`scratch-card ${revealed ? 'revealed' : ''}`}

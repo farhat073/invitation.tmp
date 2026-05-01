@@ -8,8 +8,8 @@ export default function RSVPSection() {
   return (
     <div className="rsvp-section scroll-reveal" id="rsvp">
       <div className="carriage-pass">
-        <div className="pass-header gold-shimmer">Royal RSVP</div>
-        <div className="pass-subtitle">Kindly Confirm Your Gracious Presence</div>
+        <div className="pass-header gold-shimmer">Contact Info</div>
+        <div className="pass-subtitle">Any suggestions</div>
 
         <div className="ornament-divider" style={{ margin: '20px auto', maxWidth: '180px' }}>
           <span className="ornament-line" />
