@@ -32,8 +32,9 @@ export default function EnvelopeScreen({ onOpen, opened }: EnvelopeScreenProps) 
       <video
         ref={videoRef}
         className="intro-video"
-        src="/starter-video.mp4"
+        src="/starter-video.mp4#t=0.001"
         playsInline
+        preload="auto"
         onEnded={handleVideoEnd}
       />
 
