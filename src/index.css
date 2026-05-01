@@ -54,7 +54,8 @@ body {
 .intro-video {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
-  object-fit: contain; z-index: 1;
+  object-fit: cover; z-index: 1;
+  transform: translateX(28px) scale(1.06);
 }
 
 .tap-to-open-overlay {
