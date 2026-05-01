@@ -4,15 +4,12 @@ export default function InvocationSection() {
   return (
     <div className="section-card invocation-section" id="invocation">
       <CornerOrnaments />
-      {/* Arabic Bismillah Calligraphy */}
-      <div className="arabic-calligraphy gold-shimmer" aria-label="Bismillah Arabic calligraphy">
-        بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
-      </div>
-
-      <div className="ornament-divider" style={{ margin: '20px auto', maxWidth: '200px' }}>
-        <span className="ornament-line" />
-        <span className="ornament-diamond" />
-        <span className="ornament-line" />
+      {/* Arabic Calligraphy Hidden - Replaced with minimal ornament */}
+      <div className="monogram-frame" style={{ width: '80px', height: '80px', margin: '0 auto 20px' }}>
+        <div className="monogram-border" style={{ animationDuration: '40s' }}></div>
+        <div className="monogram-inner" style={{ width: '64px', height: '64px' }}>
+          <span className="monogram-text" style={{ fontSize: '24px' }}>✧</span>
+        </div>
       </div>
 
       <p className="dua-text">

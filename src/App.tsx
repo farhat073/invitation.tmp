@@ -43,15 +43,15 @@ export default function App() {
         
         const animations: { transform: string; rotateX?: number; rotateY?: number; rotateZ?: number; y?: number; scale?: number }[] = [
           // Invocation: flip from top
-          { transform: '', rotateX: 25, y: 100, scale: 0.85 },
+          { transform: '', rotateX: 10, y: 50, scale: 0.95 },
           // Hosts: swing from left
-          { transform: '', rotateY: -20, rotateX: 8, y: 80, scale: 0.9 },
+          { transform: '', rotateY: -8, rotateX: 4, y: 50, scale: 0.95 },
           // Bride: dramatic zoom
-          { transform: '', rotateX: -15, y: 120, scale: 0.7 },
+          { transform: '', rotateX: -8, y: 60, scale: 0.92 },
           // Events: flip from bottom
-          { transform: '', rotateX: -25, rotateY: 5, y: 90, scale: 0.88 },
+          { transform: '', rotateX: -10, rotateY: 3, y: 50, scale: 0.95 },
           // Venue: tilt right
-          { transform: '', rotateY: 18, rotateX: -8, y: 70, scale: 0.92 },
+          { transform: '', rotateY: 8, rotateX: -4, y: 50, scale: 0.95 },
         ]
 
         cards.forEach((card, i) => {
@@ -89,9 +89,9 @@ export default function App() {
 
           // Subtle 3D tilt on scroll through
           gsap.to(card, {
-            rotateX: -3,
-            rotateY: i % 2 === 0 ? 2 : -2,
-            y: -20,
+            rotateX: -1,
+            rotateY: i % 2 === 0 ? 1 : -1,
+            y: -10,
             ease: 'none',
             scrollTrigger: {
               trigger: card,
@@ -126,9 +126,9 @@ export default function App() {
           gsap.fromTo(countdown,
             {
               opacity: 0,
-              rotateX: 30,
-              y: 150,
-              scale: 0.75,
+              rotateX: 10,
+              y: 60,
+              scale: 0.92,
               filter: 'blur(15px)',
               transformPerspective: 1200,
             },
@@ -156,9 +156,9 @@ export default function App() {
           gsap.fromTo(rsvp,
             {
               opacity: 0,
-              rotateY: -30,
-              x: -60,
-              scale: 0.8,
+              rotateY: -10,
+              x: -30,
+              scale: 0.95,
               filter: 'blur(10px)',
               transformPerspective: 1200,
             },
@@ -185,8 +185,8 @@ export default function App() {
           gsap.fromTo(comp,
             {
               opacity: 0,
-              y: 80,
-              rotateX: 15,
+              y: 40,
+              rotateX: 5,
               filter: 'blur(8px)',
               transformPerspective: 1200,
             },
@@ -209,7 +209,7 @@ export default function App() {
         // --- Global parallax: content wrapper subtle 3D ---
         if (perspectiveRef.current) {
           gsap.to(perspectiveRef.current, {
-            rotateX: -2,
+            rotateX: -1,
             ease: 'none',
             scrollTrigger: {
               trigger: perspectiveRef.current,
