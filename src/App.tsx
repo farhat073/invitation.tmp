@@ -65,8 +65,8 @@ export default function App() {
               rotateZ: anim.rotateZ || 0,
               y: anim.y || 80,
               scale: anim.scale || 0.9,
-              filter: 'blur(12px)',
               transformPerspective: 1200,
+              force3D: true
             },
             {
               opacity: 1,
@@ -75,29 +75,27 @@ export default function App() {
               rotateZ: 0,
               y: 0,
               scale: 1,
-              filter: 'blur(0px)',
-              duration: 1.4,
-              ease: 'power3.out',
+              duration: 1.2,
+              ease: 'power2.out',
               scrollTrigger: {
                 trigger: card,
-                start: 'top 85%',
-                end: 'top 40%',
+                start: 'top 92%',
                 toggleActions: 'play none none reverse',
               },
             }
           )
 
-          // Subtle 3D tilt on scroll through
+          // Subtle 3D tilt on scroll through - light version for mobile
           gsap.to(card, {
-            rotateX: -1,
-            rotateY: i % 2 === 0 ? 1 : -1,
-            y: -10,
+            rotateX: -0.5,
+            y: -5,
             ease: 'none',
+            force3D: true,
             scrollTrigger: {
               trigger: card,
-              start: 'top 40%',
+              start: 'top 50%',
               end: 'bottom 20%',
-              scrub: 1.5,
+              scrub: 1,
             },
           })
         })
@@ -129,21 +127,19 @@ export default function App() {
               rotateX: 10,
               y: 60,
               scale: 0.92,
-              filter: 'blur(15px)',
               transformPerspective: 1200,
+              force3D: true
             },
             {
               opacity: 1,
               rotateX: 0,
               y: 0,
               scale: 1,
-              filter: 'blur(0px)',
-              duration: 1.6,
-              ease: 'back.out(1.4)',
+              duration: 1.4,
+              ease: 'power2.out',
               scrollTrigger: {
                 trigger: countdown,
-                start: 'top 85%',
-                end: 'top 45%',
+                start: 'top 90%',
                 toggleActions: 'play none none reverse',
               },
             }
@@ -159,20 +155,19 @@ export default function App() {
               rotateY: -10,
               x: -30,
               scale: 0.95,
-              filter: 'blur(10px)',
               transformPerspective: 1200,
+              force3D: true
             },
             {
               opacity: 1,
               rotateY: 0,
               x: 0,
               scale: 1,
-              filter: 'blur(0px)',
-              duration: 1.5,
-              ease: 'power3.out',
+              duration: 1.3,
+              ease: 'power2.out',
               scrollTrigger: {
                 trigger: rsvp,
-                start: 'top 85%',
+                start: 'top 90%',
                 toggleActions: 'play none none reverse',
               },
             }
@@ -187,19 +182,18 @@ export default function App() {
               opacity: 0,
               y: 40,
               rotateX: 5,
-              filter: 'blur(8px)',
               transformPerspective: 1200,
+              force3D: true
             },
             {
               opacity: 1,
               y: 0,
               rotateX: 0,
-              filter: 'blur(0px)',
               duration: 1.2,
               ease: 'power2.out',
               scrollTrigger: {
                 trigger: comp,
-                start: 'top 90%',
+                start: 'top 95%',
                 toggleActions: 'play none none reverse',
               },
             }

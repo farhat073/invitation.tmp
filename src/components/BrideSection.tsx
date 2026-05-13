@@ -11,7 +11,7 @@ export default function BrideSection() {
         </div>
       </div>
 
-      <h1 className="bride-name">Dr. Uraosa Shafi</h1>
+      <h1 className="bride-name">Dr. Uroosa Shafi</h1>
     </div>
   )
 }

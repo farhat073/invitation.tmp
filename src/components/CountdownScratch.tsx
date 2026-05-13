@@ -148,19 +148,28 @@ export default function CountdownScratch() {
 
     // Calculate scratch percentage (optimized for mobile)
     scratchCount.current += 1
-    if (scratchCount.current % 10 === 0) {
-      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
-      let transparent = 0
-      const stride = 16 // check every 4th pixel to save CPU
-      for (let i = 3; i < imageData.data.length; i += stride) {
-        if (imageData.data[i] < 128) transparent++
-      }
-      const totalChecked = Math.floor(imageData.data.length / stride)
-      scratchPercentage.current = (transparent / totalChecked) * 100
+    if (scratchCount.current % 15 === 0) { // Check less frequently
+      // Use a smaller area or lower resolution for the check
+      const checkW = Math.floor(canvas.width / 4)
+      const checkH = Math.floor(canvas.height / 4)
+      
+      // Temporary canvas to downscale for faster pixel counting
+      const tempCanvas = document.createElement('canvas')
+      tempCanvas.width = checkW
+      tempCanvas.height = checkH
+      const tempCtx = tempCanvas.getContext('2d')
+      if (tempCtx) {
+        tempCtx.drawImage(canvas, 0, 0, checkW, checkH)
+        const imageData = tempCtx.getImageData(0, 0, checkW, checkH)
+        let transparent = 0
+        for (let i = 3; i < imageData.data.length; i += 4) {
+          if (imageData.data[i] < 128) transparent++
+        }
+        scratchPercentage.current = (transparent / (checkW * checkH)) * 100
 
-      // Auto-reveal at 40%
-      if (scratchPercentage.current > 40 && !revealed) {
-        setRevealed(true)
+        if (scratchPercentage.current > 35 && !revealed) {
+          setRevealed(true)
+        }
       }
     }
   }, [revealed])
